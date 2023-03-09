@@ -1,0 +1,102 @@
+<template>
+    <lightning-card title="Account Info">
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_2-of-2">
+                <h3 records-recordlayoutsection_recordlayoutsection="" class="test-id__section-header-container slds-section__title slds-theme--shade">
+                    <span records-recordlayoutsection_recordlayoutsection="" class="test-id__section-header-title section-header-title slds-p-horizontal--small">Account Information</span>
+                </h3> 
+            </div>
+            
+            <div class="slds-col slds-size_1-of-2">
+                <div  class="slds-float_left slds-m-around_small">
+                    <lightning-input type="text" label="Name" value={name} label-hidden></lightning-input>
+                </div>
+                <div  class="slds-float_left  slds-m-around_small">
+                    <lightning-input type="text" label="Account Number" value={accountNumber} label-hidden></lightning-input>
+                </div>
+              
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+                <div  class="slds-float_left slds-m-around_small">
+                    <lightning-input type="Number" label="Phone" value={phone} label-hidden></lightning-input>
+                </div>
+                <div  class="slds-float_left slds-m-around_small">
+                    <lightning-input type="text" label="Website"  value={website} label-hidden></lightning-input>
+                </div>
+            </div>
+            <div class="slds-col slds-size_2-of-2">
+            <h3 records-recordlayoutsection_recordlayoutsection="" class="test-id__section-header-container slds-section__title slds-theme--shade">
+                <span records-recordlayoutsection_recordlayoutsection="" class="test-id__section-header-title section-header-title slds-p-horizontal--small">Address Information</span>
+            </h3>
+            </div>
+
+            <div class="slds-form-element slds-col slds-size_2-of-3 slds-m-around_small">
+                <div class="slds-form-element__control">
+                  <div class="slds-input-has-icon slds-input-has-icon_right">
+                    <lightning-input type="text" label="Search Address" id="inputField" onchange={handleInputChange}></lightning-input>
+                    <lightning-icon icon-name="utility:search" class="slds-icon slds-input__icon slds-input__icon_right slds-p-around_small" size="x-small"></lightning-icon>
+                  </div>
+                  <div if:true={suggestion}>
+                    <div class="slds-m-around_medium" role="listbox">
+                        <ul class="slds-listbox slds-listbox_vertical slds-dropdown slds-dropdown_fluid"
+                            role="presentation">
+                            <template for:each={suggestion} for:item="addressRecommendation">
+                                <li data-key={addressRecommendation.id} key={addressRecommendation.id} role="presentation"
+                                    onclick={setAddress}
+                                    data-value={addressRecommendation.value} class="slds-listbox__item">
+                                    <span
+                                        class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta"
+                                        role="option">
+                                        <span class="slds-media__body slds-m-left_xx-small slds-m-bottom_xx-small">
+                                            <div class="slds-grid slds-m-bottom_small">
+                                                <div class="slds-col slds-size_1-of-10">
+                                                    <lightning-button-icon size="medium" icon-name="utility:checkin"
+                                                        class="slds-input__icon" variant="bare">
+                                                    </lightning-button-icon>
+                                                </div>
+                                                <div class="slds-m-left_medium slds-col slds-size_8-of-10">
+                                                    <span
+                                                        class="slds-listbox__option-text slds-listbox__option-text_entity"><b>{addressRecommendation.value}</b></span>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-10"></div>
+                                            </div>
+                                        </span>
+                                    </span>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                </div>
+                </div>
+              </div>
+            
+           <div class="slds-col slds-size_2-of-3 slds-m-around_small">
+                <lightning-input-address
+                    address-label="Address"
+                    street-label="Street"
+                    city-label="City"
+                    country-label="Country"
+                    province-label="State"
+                    state-label ="State"
+                    postal-code-label="PostalCode"
+                    street={street}
+                    city={city}
+                    country="US"
+                    postal-code={postalCode}
+                    province ={state}
+                    required
+                    field-level-help="Help Text for inputAddress field" >
+                </lightning-input-address>
+              </div>
+
+          </div>
+          <div class="slds-m-around_small slds-align_absolute-center">
+            <lightning-button  label="Cancel" title="Primary action" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+            <lightning-button variant="brand" label="Save" title="Primary action" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+
+          </div>
+ 
+
+    </lightning-card>
+    
+</template>
